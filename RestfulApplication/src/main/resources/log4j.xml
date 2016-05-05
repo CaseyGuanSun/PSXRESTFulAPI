@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<!--  Console Log
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	-->
+        <!-- 输出到日志文件  -->
+    <appender name="filelog_appender"
+        class="org.apache.log4j.RollingFileAppender">
+        <!-- 设置File参数：日志输出文件名 -->
+        <param name="File" value="/var/log/tomcat/testlog4.log" />
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+        <param name="Append" value="true" />
+        <!-- 设置文件大小 -->
+        <param name="MaxFileSize" value="1MB" />
+        <!-- 设置文件备份个数，当log文件的大小超过上面文件设置的大小时，就会进行备份。当设置的文件备份个数用完后，它会自动覆盖原有的log -->
+        <param name="MaxBackupIndex" value="10" />
+        <!-- 设置输出文件项目和格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p (%c:%L)- %m%n" />
+        </layout>
+    </appender>
+
+        <appender name="filelog_daily" class="org.apache.log4j.DailyRollingFileAppender">
+                <param name="Threshold" value="info"></param>
+        <param name="File" value="/var/log/tomcat/restful_daily.log" />
+        <param name="DatePattern" value="'daily.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss/} %-5p] [%t] (%c:%L) - %m%n" />
+        </layout>
+    </appender> 
+	
+	
+	<!-- Application Loggers -->
+	<!-- 
+	<logger name="com.posteritytech.spring">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+	
+
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="console" />
+	</root>
+	 -->
+	
+	        <!-- 设置包限制输出的通道 -->
+    <category name="com.posteritytech.spring" additivity="false">
+               <!-- 日志输出级别，起码可以有5个级别，可以扩展自己的级别，邮件发送必须是ERROR级别不好用，所以最后自己扩展一个邮件发送级别 -->
+        <level value="DEBUG" />
+        <appender-ref ref="filelog_daily" />
+        <appender-ref ref="filelog_appender" />  
+   </category>      
+	
+</log4j:configuration>
