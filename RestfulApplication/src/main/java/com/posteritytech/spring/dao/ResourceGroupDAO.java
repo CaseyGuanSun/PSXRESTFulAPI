@@ -2,6 +2,7 @@ package com.posteritytech.spring.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,8 +47,31 @@ public class ResourceGroupDAO {
 		session.flush();
 		session.clear();
 		//String sqlCmd = "select rgId, rgType, partition, gatewayIp, gatewayPort, applicationFlag, maxCallCounter, description from ResourceGroup";
-		String sqlCmd = "select new com.posteritytech.spring.model.ResourceGroup(c.rgId, c.rgType, c.partition, c.gatewayIp, c.gatewayPort, c.applicationFlag, c.maxCallCounter, c.description) from ResourceGroup c";
+		String sqlCmd = "select new com.posteritytech.spring.model.ResourceGroup(c.rgId, c.rgType, c.partition, c.gatewayIp, c.gatewayPort, c.applicationFlag,"+
+		"c.gwprefix, c.regnumber, c.token, c.status, c.sockIndex, c.blockgroupid,"+
+		"c.blackgroupid, c.prefercodec, c.mediaDriver, c.ivrDriver, c.maxCallCounter, c.radiustrans,"+
+		"c.defaultUserNumber, c.localareacode, c.domesticprefix, c.internationalprefix,"+
+		"c.reserved, c.olimatch, c.olinomatch, c.description"+
+		") from ResourceGroup c";
 		Query query = session.createQuery(sqlCmd);
 		return query.list();
+	}
+	
+	public ResourceGroup getResourceGroup(int rgId){
+		Session session = getSession();
+		session.flush();
+		session.clear();
+		//String sqlCmd = "select new com.posteritytech.spring.model.ResourceGroup(c.rgId, c.rgType, c.partition, c.gatewayIp, c.gatewayPort, c.applicationFlag, c.maxCallCounter, c.description) from ResourceGroup c where c.rgId="+rgId;
+		String sqlCmd = "select new com.posteritytech.spring.model.ResourceGroup(c.rgId, c.rgType, c.partition, c.gatewayIp, c.gatewayPort, c.applicationFlag,"+
+		"c.gwprefix, c.regnumber, c.token, c.status, c.sockIndex, c.blockgroupid,"+
+		"c.blackgroupid, c.prefercodec, c.mediaDriver, c.ivrDriver, c.maxCallCounter, c.radiustrans,"+
+		"c.defaultUserNumber, c.localareacode, c.domesticprefix, c.internationalprefix,"+
+		"c.reserved, c.olimatch, c.olinomatch, c.description"+
+		") from ResourceGroup c where c.rgId="+rgId;
+		
+		//String sqlCmd = "from ResourceGroup rg where rg.rgId="+rgId;
+		//String sqlCmd = "select rgId, rgType, partition, gatewayIp, gatewayPort, applicationFlag, maxCallCounter, description from ResourceGroup where rgId = "+ rgId;
+		Query query = session.createQuery(sqlCmd);
+		return (ResourceGroup)query.uniqueResult();
 	}
 }
