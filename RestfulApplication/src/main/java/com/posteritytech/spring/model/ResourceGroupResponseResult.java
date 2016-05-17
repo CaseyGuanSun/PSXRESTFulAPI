@@ -7,7 +7,8 @@ import java.util.List;
 public class ResourceGroupResponseResult {
 	private int	result;
 	private int totalCount;
-	private Collection<ResourceGroupElement> rgList;
+	private String reason;
+	private Collection<ResourceGroupElement> rgList = new ArrayList<ResourceGroupElement>();
 	public int getResult() {
 		return result;
 	}
@@ -26,5 +27,10 @@ public class ResourceGroupResponseResult {
 	public void setRgList(Collection<ResourceGroupElement> arrayList) {
 		this.rgList = arrayList;
 	}
-	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
 }

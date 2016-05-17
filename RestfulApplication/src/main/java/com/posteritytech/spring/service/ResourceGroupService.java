@@ -23,4 +23,8 @@ public class ResourceGroupService {
 	public List<ResourceGroup> getAllResourceGroup(){
 		return resourceGroupDao.getAllResourceGroup();
 	}
+	
+	public ResourceGroup getResourceGroup(int rgId){
+		return resourceGroupDao.getResourceGroup(rgId);
+	}
 }

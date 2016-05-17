@@ -7,9 +7,37 @@ public class ResourceGroupElement {
 	private String 	gatewayIp;
 	private String 	gatewayPort;
 	private int 	applicationFlag;
+	private int 	status;
+	private int 	sockIndex;
+	private int 	blockGroupId;
+	private int 	preferCodec;
 	private int		maxCallCounter;
 	private String 	description;
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getSockIndex() {
+		return sockIndex;
+	}
+	public void setSockIndex(int sockIndex) {
+		this.sockIndex = sockIndex;
+	}
+	public int getBlockGroupId() {
+		return blockGroupId;
+	}
+	public void setBlockGroupId(int blockGroupId) {
+		this.blockGroupId = blockGroupId;
+	}
+	public int getPreferCodec() {
+		return preferCodec;
+	}
+	public void setPreferCodec(int preferCodec) {
+		this.preferCodec = preferCodec;
+	}
 	public int getRgId() {
 		return rgId;
 	}

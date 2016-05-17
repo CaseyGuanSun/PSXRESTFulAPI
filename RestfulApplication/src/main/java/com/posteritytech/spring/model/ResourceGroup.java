@@ -16,6 +16,7 @@ public class ResourceGroup {
 	private String 		gwprefix;
 	private String 		regnumber;
 	private String 		token;
+	private int 		status;
 	private int 		sockIndex;
 	private int 		blockgroupid;
 	private int			blackgroupid;
@@ -23,9 +24,9 @@ public class ResourceGroup {
 	private int			mediaDriver;
 	private int			ivrDriver;
 	private int 		maxCallCounter;
-	private int			rediustrans;
+	private int			radiustrans;
 	private String		defaultUserNumber;
-	private String 		localEreaCode;
+	private String 		localareacode;
 	private String 		domesticprefix;
 	private String 		internationalprefix;
 	private String 		reserved;
@@ -33,18 +34,39 @@ public class ResourceGroup {
 	private String 		olinomatch;
 	private String 		description;
 	
-	public ResourceGroup(int _rgId, int _rgType, int _partition, String _gatewayIp, String _gatewayPort, int _applicationFlag, int _maxCallCounter, String _description){
-		this.rgId = _rgId;
-		this.rgType = _rgType;
-		this.partition = _partition;
-		this.gatewayIp = _gatewayIp;
-		this.gatewayPort = _gatewayPort;
-		this.applicationFlag = _applicationFlag;
-		this.maxCallCounter = _maxCallCounter;
-		this.description = _description;
+	public ResourceGroup(int rgId, int rgType, int partition, String gatewayIp, String gatewayPort, int applicationFlag,
+			String gwprefix, String regnumber, String token, int status, int sockIndex, int blockgroupid,
+			int blackgroupid, int prefercodec, int mediaDriver, int ivrDriver, int maxCallCounter, int radiustrans,
+			String defaultUserNumber, String localareacode, String domesticprefix, String internationalprefix,
+			String reserved, String olimatch, String olinomatch, String description) {
+		super();
+		this.rgId = rgId;
+		this.rgType = rgType;
+		this.partition = partition;
+		this.gatewayIp = gatewayIp;
+		this.gatewayPort = gatewayPort;
+		this.applicationFlag = applicationFlag;
+		this.gwprefix = gwprefix;
+		this.regnumber = regnumber;
+		this.token = token;
+		this.status = status;
+		this.sockIndex = sockIndex;
+		this.blockgroupid = blockgroupid;
+		this.blackgroupid = blackgroupid;
+		this.prefercodec = prefercodec;
+		this.mediaDriver = mediaDriver;
+		this.ivrDriver = ivrDriver;
+		this.maxCallCounter = maxCallCounter;
+		this.radiustrans = radiustrans;
+		this.defaultUserNumber = defaultUserNumber;
+		this.localareacode = localareacode;
+		this.domesticprefix = domesticprefix;
+		this.internationalprefix = internationalprefix;
+		this.reserved = reserved;
+		this.olimatch = olimatch;
+		this.olinomatch = olinomatch;
+		this.description = description;
 	}
-	
-	
 	@Id
 	public int getRgId() {
 		return rgId;
@@ -148,11 +170,11 @@ public class ResourceGroup {
 	public void setIvrDriver(int ivrDriver) {
 		this.ivrDriver = ivrDriver;
 	}
-	public int getRediustrans() {
-		return rediustrans;
+	public int getRadiustrans() {
+		return radiustrans;
 	}
-	public void setRediustrans(int rediustrans) {
-		this.rediustrans = rediustrans;
+	public void setRadiustrans(int radiustrans) {
+		this.radiustrans = radiustrans;
 	}
 	public String getDefaultUserNumber() {
 		return defaultUserNumber;
@@ -160,11 +182,11 @@ public class ResourceGroup {
 	public void setDefaultUserNumber(String defaultUserNumber) {
 		this.defaultUserNumber = defaultUserNumber;
 	}
-	public String getLocalEreaCode() {
-		return localEreaCode;
+	public String getLocalareacode() {
+		return localareacode;
 	}
-	public void setLocalEreaCode(String localEreaCode) {
-		this.localEreaCode = localEreaCode;
+	public void setLocalareacode(String localareacode) {
+		this.localareacode = localareacode;
 	}
 	public String getDomesticprefix() {
 		return domesticprefix;
@@ -196,5 +218,10 @@ public class ResourceGroup {
 	public void setOlinomatch(String olinomatch) {
 		this.olinomatch = olinomatch;
 	}
-	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}	
 }

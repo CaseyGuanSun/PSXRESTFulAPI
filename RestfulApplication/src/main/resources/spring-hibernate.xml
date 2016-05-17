@@ -50,6 +50,8 @@
                 <value>com.posteritytech.spring.model.CentraxNumber</value>
                 <value>com.posteritytech.spring.model.SipEndPoint</value>
                 <value>com.posteritytech.spring.model.ResourceGroup</value>
+                <value>com.posteritytech.spring.model.RouteList</value>
+                <value>com.posteritytech.spring.model.Dnis</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -116,13 +118,29 @@
         <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
     </aop:config>
     
+    <!-- Resource Group -->
     <bean id="resourceGroupDAO" class="com.posteritytech.spring.dao.ResourceGroupDAO">
           <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     <bean id="resourceGroupService" class="com.posteritytech.spring.service.ResourceGroupService">
     	<property name="resourceGroupDao" ref="resourceGroupDAO"></property>
     </bean>
-   
+    
+    <!-- Route List -->
+   	<bean id="routeListDAO" class="com.posteritytech.spring.dao.RouteListDAO">
+          <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="routeListService" class="com.posteritytech.spring.service.RouteListService">
+    	<property name="routeListDao" ref="routeListDAO"></property>
+    </bean>
+    
+    <!-- DNIS Translation -->
+    <bean id="dnisDAO" class="com.posteritytech.spring.dao.DnisDAO">
+          <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="dnisService" class="com.posteritytech.spring.service.DnisService">
+    	<property name="dnisDAO" ref="dnisDAO"></property>
+    </bean>
     
     <bean id="cdrDao" class="com.posteritytech.spring.dao.CdrDAO">
           <property name="sessionFactory" ref="sessionFactory"></property>
